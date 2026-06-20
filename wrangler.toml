@@ -1,0 +1,8 @@
+name = "jundmz"
+compatibility_date = "2026-06-20"
+
+# Assets-only Worker (no server code) — Cloudflare serves the static build.
+# CI builds ./public with the pinned flake toolchain; `wrangler deploy` uploads it.
+# No [build] section on purpose: the GitHub Action does the build, not Cloudflare.
+[assets]
+directory = "./public"

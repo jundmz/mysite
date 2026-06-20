@@ -1,0 +1,14 @@
+base_url = "https://jundmz.dev"
+title = "Mansur al-Jundubi"
+description = "DevOps and infrastructure — provisioning, automation, Kubernetes, and CI/CD, with everything written down as code."
+default_language = "en"
+
+compile_sass = false
+build_search_index = false
+minify_html = true
+
+[markdown]
+# Monochrome on purpose — keeps code blocks consistent with the b&w type.
+# Flip to true (and pick a highlight_theme) later if you want syntax colors.
+# highlighting = true
+smart_punctuation = true

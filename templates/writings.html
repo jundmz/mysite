@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Writings — Mansur al-Jundubi{% endblock %}
+{% block description %}Writeups on infrastructure, Kubernetes, networks, and keeping systems reproducible.{% endblock %}
+
+{% block body %}
+<main class="writings">
+  <a class="back" href="/">← Mansur al-Jundubi</a>
+  <h1>Writings</h1>
+
+  <div class="post-list">
+    {% for page in section.pages %}
+    <article class="post">
+      <p class="date">{{ page.date | date(format="%Y") }}</p>
+      <a class="title" href="{{ page.path }}">{{ page.title }}</a>
+      {% if page.description %}<p class="dek">{{ page.description }}</p>{% endif %}
+    </article>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

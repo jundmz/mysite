@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} — Mansur al-Jundubi{% endblock %}
+{% block description %}{{ page.description }}{% endblock %}
+
+{% block body %}
+<main class="post-page">
+  <a class="back" href="/writings/">← Writings</a>
+  <article class="prose">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-meta">{{ page.date | date(format="%B %Y") }}</p>
+    {{ page.content | safe }}
+  </article>
+</main>
+{% endblock %}
