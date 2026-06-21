@@ -1,0 +1,31 @@
+name: deploy
+
+# Build with the flake-pinned Zola, then upload the finished site to
+# Cloudflare Workers (Static Assets). Cloudflare serves; it never builds.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}   # lets you trigger a deploy by hand from the Actions tab
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Pin/update these action versions as you like; flakes are enabled below.
+      - uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Build site with pinned Zola
+        run: nix develop --command zola build   # outputs to ./public
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
